@@ -26,8 +26,13 @@ public class Funcionamiento implements Serializable{
 			this.cursos.put(id, cursos);
 		}
 	}
-	public void actualizarCursos() {
-		// TODO Auto-generated method stub
+	public void actualizarCursos(int id, String nombre, int creditos) throws Exception{
+		if(this.cursos.containsKey(id)) {
+			this.cursos.remove(id);
+			this.crearCurso(id, nombre, creditos);
+		}else {
+			throw new Exception("Cuso no existente");
+		}
 
 	}
 
@@ -40,12 +45,10 @@ public class Funcionamiento implements Serializable{
 		Imprimir.almacenar("cursos.cvs", lineasCursos);
 	}
 	public void cargarCursos() throws Exception {
-		ArrayList<String> lineasCursos = Imprimir.cargar("cursos.cvs");
+		ArrayList<String> lineasCursos = (ArrayList<String>) Imprimir.cargar("cursos.cvs");
 		for(String linea: lineasCursos) {
 			String datos[] = linea.split(";");
 			this.crearCurso(Integer.parseInt(datos[0]), datos[1], Integer.parseInt(datos[2]));
 		}
 	}
-
-
 }

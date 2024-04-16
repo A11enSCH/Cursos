@@ -55,9 +55,6 @@ public class Menu {
 		this.cursos.cargarCursos();
 	}
 	
-	private void actualizarCurso(Scanner sc){
-		this.cursos.actualizarCursos();
-	}
 	private void consultarCurso() {
 		System.out.println("id\tNombre\tCreditos");
 		for(Integer idCurso : this.cursos.getCursos().keySet()) {
@@ -73,5 +70,15 @@ public class Menu {
 		System.out.println("creditos:");
 		int creditos = sc.nextInt();
 		this.cursos.crearCurso(id, nombre, creditos);
+	}
+	private void actualizarCurso(Scanner sc) throws Exception{
+		System.out.println("Le sugerimos que consulte con anterioridad los curos existentes antes de  cambiar un curso");
+		System.out.println("Id del curso a cambiar:");
+		int id = sc.nextInt();
+		System.out.println("Nuevo nombre:");
+		String nombre = sc.next();
+		System.out.println("Nuevos creditos a cambiar:");
+		int creditos = sc.nextInt();
+		this.cursos.actualizarCursos(id, nombre, creditos);
 	}
 }
